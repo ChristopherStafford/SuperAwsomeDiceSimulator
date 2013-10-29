@@ -12,7 +12,6 @@ import android.graphics.Paint.Style;
 public class RollingDie
 {
 	private boolean mTouched;
-	private Bitmap mSprite;
 	private int mX;
 	private int mY;
 	
@@ -40,14 +39,12 @@ public class RollingDie
 	private Paint mBlack;
 
 	
-	public RollingDie(Bitmap bitmap, int maxX, int maxY, int minX, int minY, int sides)
+	public RollingDie(int sides)
 	{
 		this.mTouched = false;
-		this.mSprite = bitmap;
 		this.rand = new Random();
+
 		
-		//this.mX = rand.nextInt(maxX - minX) + minX;
-		//this.mY = rand.nextInt(maxY - minY) + minX; 
 		mWhite = new Paint();
 		mWhite.setColor(Color.WHITE); 
 		mWhite.setStyle(Style.FILL);
@@ -85,7 +82,7 @@ public class RollingDie
 			mOutlineColor.setColor(Color.CYAN);
 			break;
 		default:
-			mOutlineColor.setColor(Color.GRAY);
+			mOutlineColor.setColor(Color.BLACK);
 			break;
 		}
 		
@@ -164,8 +161,7 @@ public class RollingDie
 		
 	}
 	
-	public Bitmap getSprite() { return mSprite; }
-	public void setSprite(Bitmap bitmap) { this.mSprite = bitmap; }
+
 	
 	public int getX() { return mX; }
 	public void setX(int x) { this.mX = x; }

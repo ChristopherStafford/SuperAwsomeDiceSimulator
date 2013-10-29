@@ -18,7 +18,7 @@ public class MainMenu extends ListActivity
 							
 							};
 	String menuItems[] = {	"Instructions",
-							"Dungeons and Dragons",
+							"Roleplaying",
 							"Yatzee",
 							"Coin Flip",
 							"Custom Set",
@@ -56,7 +56,7 @@ public class MainMenu extends ListActivity
 			startActivity(gameIntent);
 			break;
 			
-		case 2:
+		case 2: //yatzee
 			gameIntent.putExtra("D2", 0);
 			gameIntent.putExtra("D4", 0);
 			gameIntent.putExtra("D6", 5);
@@ -67,7 +67,7 @@ public class MainMenu extends ListActivity
 			startActivity(gameIntent);
 			break;
 			
-		case 3:
+		case 3://coin
 			gameIntent.putExtra("D2", 1);
 			gameIntent.putExtra("D4", 0);
 			gameIntent.putExtra("D6", 0);
@@ -78,7 +78,7 @@ public class MainMenu extends ListActivity
 			startActivity(gameIntent);
 			break;
 			
-		default:
+		default://other
 			try
 			{
 				Class theClass = Class.forName("com.HedronCo.dicemod." + item);

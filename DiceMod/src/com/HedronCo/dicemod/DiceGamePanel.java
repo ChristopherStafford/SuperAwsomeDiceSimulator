@@ -9,10 +9,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import android.util.Log;
 
@@ -24,6 +26,8 @@ public class DiceGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	   private GameThread game;
 	   public ArrayList<RollingDie> mDice;
 	   private int bgcolor;
+	   private int width;
+	   private int height;
 	   
 	   
 	   
@@ -37,7 +41,7 @@ public class DiceGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	      // adding the callback (this) to the surface holder to intercept events
 	      getHolder().addCallback(this);
 	      
-	     
+
 	      
 
 	      game = new GameThread(getHolder(), this);
@@ -59,7 +63,7 @@ mDice = new ArrayList<RollingDie>();
 	      }
 	      
 	      for (i=0; i<d8; i++){
-	    	  addDie(2);
+	    	  addDie(8);
 	      }
 	      
 	      for (i=0; i<d10; i++){
@@ -118,15 +122,7 @@ mDice = new ArrayList<RollingDie>();
 			   {
 				   RollingDie mDie = mDice.get(i);
 				   mDie.handleActionDown((int)event.getX(), (int)event.getY());
-	
-				   if (event.getY() > getHeight() - 50)
-				   {
-		              game.setRunning(false);
-				      ((Activity)getContext()).finish();
-				   } else
-				   {
-				      Log.d(TAG, "Coords: x=" + event.getX() + ",y=" + event.getY());
-				   }
+				   
 			   }
 			}
 		   if (event.getAction() == MotionEvent.ACTION_MOVE)
@@ -186,14 +182,7 @@ mDice = new ArrayList<RollingDie>();
 	   
 	   public void addDie(int numSides)
 	   {
-		   mDice.add(
-				   new RollingDie(
-						   BitmapFactory.decodeResource(getResources(), R.drawable.placeholderdie),
-						   this.getWidth(),
-						   this.getHeight(),
-						   200,
-						   0,
-						   numSides) );
+		   mDice.add(new RollingDie(numSides));
 	   }
 	   
 	   
